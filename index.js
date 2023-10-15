@@ -32,52 +32,59 @@ for(let i = 0 ; i < slider.value ; i++){
 
     }
 }
-slider.addEventListener('input' , function() {
-  output.textContent = this.value + "x" + this.value
-  divs.forEach(div =>{
-    grid.removeChild(div)
-
-    
-
-})
-
-
-
-
-for(let i = 0 ; i < slider.value ; i++){
-    for(let j = 0 ; j < slider.value ; j++ )
-    {
-        const div = document.createElement('div')
-        let width = 256/slider.value
-        div.style.width = `${width}px`
-        div.style.height = `${width}px`
+function sliderValue(){
+{   
         
-        grid.appendChild(div)
-    }
-    
-}
-divs  = document.querySelectorAll(".grid div");
-divs.forEach(div =>{
-    div.addEventListener('mouseenter' , ()=>{
-        
+        divs.forEach(div =>{
+          grid.removeChild(div)
+      })
+      
+      
+      
+      
+      for(let i = 0 ; i < slider.value ; i++){
+          for(let j = 0 ; j < slider.value ; j++ )
+          {
+              const div = document.createElement('div')
+              let width = 256/slider.value
+              div.style.width = `${width}px`
+              div.style.height = `${width}px`
+              
+              grid.appendChild(div)
+          }
+          
+      }
+      divs  = document.querySelectorAll(".grid div");
+      divs.forEach(div =>{
+          div.addEventListener('mouseenter' , ()=>{
+              
+             
+              let color
+                  if(choice == 0)
+                  {
+                      color = colorPicker.value
+                  }
+                  else if(choice == 1){
+                      color = `rgba(${Math.floor(Math.random()*256)} ,${Math.floor(Math.random()*256)} , ${Math.floor(Math.random()*256)} `
+                  }
+                  
+              let width = 256/slider.value
+              div.style.width = `${width}px`
+              div.style.height = `${width}px`
+              div.style.background = color
+          })
+      })
        
-        let color
-            if(choice == 0)
-            {
-                color = colorPicker.value
-            }
-            else if(choice == 1){
-                color = `rgba(${Math.floor(Math.random()*256)} ,${Math.floor(Math.random()*256)} , ${Math.floor(Math.random()*256)} `
-            }
-            
-        let width = 256/slider.value
-        div.style.width = `${width}px`
-        div.style.height = `${width}px`
-        div.style.background=color
-    })
+    }
+}
+slider.addEventListener('input' , function(){
+    output.textContent = slider.value + "x" + slider.value
+    
+    
 })
- 
-})
+slider.addEventListener('click' , ()=>{
+    sliderValue()
+} )
 
 
 
