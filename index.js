@@ -3,6 +3,8 @@
 const grid = document.getElementById('grid')
 const restartBtn = document.getElementById('restart')
 let divs  = document.querySelectorAll(".grid div")
+const colorPicker = document.getElementById('colorpicker')
+const randomBtn = document.getElementById('random')
 let choice 
 for(let i = 0 ; i < slider.value ; i++){
     for(let j = 0  ; j < slider.value ; j++){
@@ -11,7 +13,16 @@ for(let i = 0 ; i < slider.value ; i++){
         div.style.cssText = `width:${lenWidthHeight}px; height:${lenWidthHeight}px ;background-color: #FAF9F6;`
         div.addEventListener('mouseenter', (e)=>{
             let lenWidthHeight = 256 / slider.value
-        let color = `rgba(${Math.floor(Math.random()*256)} ,${Math.floor(Math.random()*256)} , ${Math.floor(Math.random()*256)} `
+            let color
+            if(choice == 0)
+            {
+                color = colorPicker.value
+            }
+            else if(choice == 1){
+                color = `rgba(${Math.floor(Math.random()*256)} ,${Math.floor(Math.random()*256)} , ${Math.floor(Math.random()*256)} `
+            }
+            
+        
         div.style.width = `${lenWidthHeight}px`
         div.style.height = `${lenWidthHeight}px`
         div.style.background=color
@@ -49,7 +60,16 @@ divs  = document.querySelectorAll(".grid div");
 divs.forEach(div =>{
     div.addEventListener('mouseenter' , ()=>{
         
-        let color = `rgba(${Math.floor(Math.random()*256)} ,${Math.floor(Math.random()*256)} , ${Math.floor(Math.random()*256)} `
+       
+        let color
+            if(choice == 0)
+            {
+                color = colorPicker.value
+            }
+            else if(choice == 1){
+                color = `rgba(${Math.floor(Math.random()*256)} ,${Math.floor(Math.random()*256)} , ${Math.floor(Math.random()*256)} `
+            }
+            
         let width = 256/slider.value
         div.style.width = `${width}px`
         div.style.height = `${width}px`
@@ -61,7 +81,14 @@ divs.forEach(div =>{
 
 
 
+colorPicker.addEventListener('input',()=>{
+    choice = 0
+})
 
+
+randomBtn.addEventListener('click' , ()=>{
+    choice =  1
+})
 
 
 restartBtn.addEventListener('click',()=>{
